@@ -34,9 +34,8 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
        <Route exact path='/search' render={() =>(
-                <SearchBook/>
-
-                )}/>
+                <SearchBook allBooks={this.state.books} onMove={this.onMoveBook}/>
+    )}/>
         <Route exact path='/' render={()=>(
                 <div className="list-books">
             <div className="list-books-title">
@@ -55,5 +54,4 @@ class BooksApp extends React.Component {
     )
   }
 }
-
 export default BooksApp
