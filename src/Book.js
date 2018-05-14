@@ -30,8 +30,14 @@ return(
       </select>
       </div>
        </div>
-       <div className="book-title">{book.title}</div>
-       <div className="book-authors">{book.authors}</div>
+       {book.title && (<div className="book-title">{book.title}</div>)}
+       {Array.isArray(book.authors) && 
+       ( book.authors.map((a) =>
+        (<div className="book-authors" key={a}>{a}</div>
+       )      
+       )
+       )}
+       
        </div>
         </li>    
 
