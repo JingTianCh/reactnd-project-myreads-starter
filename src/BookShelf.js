@@ -22,7 +22,7 @@ class BookShelf extends Component{
             <h2 className="bookshelf-title">{shelfName[index]}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                     {                        this.props.allBooks.sort(sortBy('title'))
+                     {this.props.allBooks.sort(sortBy('title'))
                             .filter((book) => (book.shelf === shelf))
                             .map((book) => (
                             <Book
@@ -32,8 +32,6 @@ class BookShelf extends Component{
                             />
                         
                         ))
-
-                        
                         }
                     </ol>
                   </div>
