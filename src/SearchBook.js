@@ -31,11 +31,18 @@ class SearchBook extends React.Component{
                     books=[]
                 }
                 else{
-                books.map((book) => (
-                this.props.allBooks.filter((b) => b.id===book.id).map((b) => book.shelf=b.shelf)
-                ));
+                    if (Array.isArray(books)){
+                        for(let i=0;i<books.length;i++){
+                            books[i].shelf='none';
+                            for(let j=0;j<this.props.allBooks.length;j++){
+                                if(books[i].id===this.props.allBooks[j].id){
+                                   books[i].shelf= this.props.allBooks[j].shelf;
+                                }
+                            }
+                            }
+                        }                
+                    }
                 
-                }
                 this.setState({findBooks:books});
             })
             
@@ -61,7 +68,7 @@ class SearchBook extends React.Component{
 
             <div className="search-books-results">
               <ol className="books-grid">
-                {this.state.findBooks.sort(sortBy('title'))
+                {this.state.findBooks.length>0 && (this.state.findBooks.sort(sortBy('title'))
                  .map((b) => (
                   <Book 
                     onChangeShelf={this.props.onMove}
@@ -69,7 +76,8 @@ class SearchBook extends React.Component{
                     book={b}
                   /> 
                   ))              
-                  }
+                  )}
+                
             
             </ol>
             </div>
